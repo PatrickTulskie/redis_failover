@@ -8,8 +8,8 @@ module RedisFailover
     # @param [String, Symbol] name the strategy name
     # @return [Object] a new strategy instance
     def self.for(name)
-      require "redis_failover/failover_strategy/#{name.downcase}"
-      const_get(name.capitalize).new
+      require "redis_failover/failover_strategy/#{name.to_s.downcase}"
+      const_get(name.to_s.capitalize).new
     rescue LoadError, NameError
       raise "Failed to find failover strategy: #{name}"
     end
